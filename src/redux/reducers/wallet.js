@@ -8,6 +8,11 @@ const initialState = {
 
 const wallet = (state = initialState, action) => {
   switch (action.type) {
+  case 'receivedCoins':
+    return {
+      ...state,
+      currencies: action.payload,
+    };
   default:
     return state;
   }
