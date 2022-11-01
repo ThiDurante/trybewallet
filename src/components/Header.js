@@ -6,7 +6,7 @@ function Header(props) {
   const { email, expenses } = props;
   const totalExpenses = expenses.length === 0 ? 0 : expenses.reduce((acc, curr) => {
     const coin = curr.currency;
-    acc += +curr.value * curr.exchangeRates[coin].ask;
+    acc += +curr.value * +curr.exchangeRates[coin].ask;
     return acc;
   }, 0);
   console.log(totalExpenses);
