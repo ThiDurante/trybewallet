@@ -9,7 +9,6 @@ function Header(props) {
     acc += +curr.value * +curr.exchangeRates[coin].ask;
     return acc;
   }, 0);
-  console.log(totalExpenses);
   return (
     <section>
       <p data-testid="header-currency-field">BRL</p>

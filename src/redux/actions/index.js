@@ -24,6 +24,11 @@ export const saveExpenses = (expense) => ({
   payload: expense,
 });
 
+export const removeExpenses = (expenses) => ({
+  type: 'removeExpenses',
+  payload: expenses,
+});
+
 export const fetchCoins = () => async (dispatch) => {
   try {
     dispatch(requestCoinsStarted());
