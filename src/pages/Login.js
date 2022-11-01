@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
-import { fetchCoins, loginEvent } from '../redux/actions';
+import { loginEvent } from '../redux/actions';
 
 function Login(props) {
   const { dispatch } = props;
@@ -26,7 +26,7 @@ function Login(props) {
   const handleLoginClick = () => {
     const { history } = props;
     dispatch(loginEvent(email));
-    dispatch(fetchCoins());
+    // dispatch(fetchCoins());
     history.push('/carteira');
   };
 

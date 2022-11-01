@@ -19,6 +19,11 @@ const errorCoins = (error) => ({
   payload: error,
 });
 
+export const saveExpenses = (expense) => ({
+  type: 'saveExpenses',
+  payload: expense,
+});
+
 export const fetchCoins = () => async (dispatch) => {
   try {
     dispatch(requestCoinsStarted());

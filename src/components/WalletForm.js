@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
-import { receiveCoins } from '../redux/actions';
+import { receiveCoins, saveExpenses } from '../redux/actions';
 
 function WalletForm(props) {
+  const { dispatch } = props;
+  // fetching and setting currencies for selection
   const [allCurrencies, setAllCurrencies] = useState(() => []);
   useEffect(() => {
     const fetchCoinsHere = async () => {
-      const { dispatch } = props;
       const request = await fetch('https://economia.awesomeapi.com.br/json/all');
       const data = await request.json();
       const filteredData = Object.keys(data).filter((e) => e !== 'USDT');
@@ -17,8 +18,37 @@ function WalletForm(props) {
       setAllCurrencies(filteredData);
     };
     fetchCoinsHere();
-  }, [props]);
-  console.log(allCurrencies);
+  }, [dispatch]);
+
+  // controlling inputs
+  const [amount, setAmount] = useState(() => '');
+  const [description, setDescription] = useState(() => '');
+  const [currency, setCurrency] = useState(() => 'USD');
+  const [method, setMethod] = useState(() => 'Dinheiro');
+  const [tag, setTag] = useState(() => 'Alimentação');
+
+  // sending them to global state on button click
+  const handleSaveExpense = async () => {
+    const { stateExpense } = props;
+    const request = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await request.json();
+    const objExpense = {
+      id: stateExpense.length === 0 ? 0 : stateExpense.length,
+      value: amount,
+      description,
+      currency,
+      method,
+      tag,
+      exchangeRates: data,
+    };
+    dispatch(saveExpenses(objExpense));
+    console.log(objExpense);
+    setAmount('');
+    setDescription('');
+    setCurrency('USD');
+    setMethod('Dinheiro');
+    setTag('Alimentação');
+  };
   return (
     <section>
       <form>
@@ -28,6 +58,8 @@ function WalletForm(props) {
             type="number"
             name="amount"
             id="amount"
+            value={ amount }
+            onChange={ (e) => setAmount(e.target.value) }
           />
         </label>
         <label htmlFor="description">
@@ -36,6 +68,8 @@ function WalletForm(props) {
             type="text"
             name="description"
             id="description"
+            value={ description }
+            onChange={ (e) => setDescription(e.target.value) }
           />
         </label>
         <label htmlFor="currency">
@@ -43,22 +77,21 @@ function WalletForm(props) {
             data-testid="currency-input"
             name="currency"
             id="currency"
+            value={ currency }
+            onChange={ (e) => setCurrency(e.target.value) }
+
           >
             {allCurrencies
               .map((e) => <option key={ e } value={ e }>{e}</option>)}
           </select>
-          <input
-            data-testid="currency-input"
-            type="select"
-            name="currency"
-            id="currency"
-          />
         </label>
         <label htmlFor="method">
           <select
             data-testid="method-input"
             name="method"
             id="method"
+            value={ method }
+            onChange={ (e) => setMethod(e.target.value) }
           >
             <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
@@ -70,6 +103,8 @@ function WalletForm(props) {
             data-testid="tag-input"
             name="tag"
             id="tag"
+            value={ tag }
+            onChange={ (e) => setTag(e.target.value) }
           >
             <option value="Alimentação">Alimentação</option>
             <option value="Lazer">Lazer</option>
@@ -78,6 +113,13 @@ function WalletForm(props) {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
+        <button
+          type="button"
+          onClick={ handleSaveExpense }
+        >
+          Adicionar despesa
+
+        </button>
       </form>
     </section>
 
@@ -86,6 +128,13 @@ function WalletForm(props) {
 
 WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  stateExpense: PropTypes.shape({
+    length: PropTypes.number,
+  }).isRequired,
 };
 
-export default connect()(WalletForm);
+const mapStateToProps = (state) => ({
+  stateExpense: state.wallet.expenses,
+});
+
+export default connect(mapStateToProps)(WalletForm);
