@@ -32,6 +32,7 @@ function WalletForm(props) {
     const { stateExpense } = props;
     const request = await fetch('https://economia.awesomeapi.com.br/json/all');
     const data = await request.json();
+    // mounting obj after fetch
     const objExpense = {
       id: stateExpense.length === 0 ? 0 : stateExpense.length,
       value: amount,
@@ -41,6 +42,7 @@ function WalletForm(props) {
       tag,
       exchangeRates: data,
     };
+    // dispatching it to globalState and reseting inputs
     dispatch(saveExpenses(objExpense));
     console.log(objExpense);
     setAmount('');
