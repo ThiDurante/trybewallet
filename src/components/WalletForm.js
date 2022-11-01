@@ -13,7 +13,6 @@ function WalletForm(props) {
       const request = await fetch('https://economia.awesomeapi.com.br/json/all');
       const data = await request.json();
       const filteredData = Object.keys(data).filter((e) => e !== 'USDT');
-      console.log(filteredData);
       dispatch(receiveCoins(filteredData));
       setAllCurrencies(filteredData);
     };
@@ -55,6 +54,7 @@ function WalletForm(props) {
     <section>
       <form>
         <label htmlFor="amount">
+          Amount
           <input
             data-testid="value-input"
             type="number"
@@ -65,6 +65,7 @@ function WalletForm(props) {
           />
         </label>
         <label htmlFor="description">
+          Description
           <input
             data-testid="description-input"
             type="text"
@@ -75,13 +76,13 @@ function WalletForm(props) {
           />
         </label>
         <label htmlFor="currency">
+          Currency
           <select
             data-testid="currency-input"
             name="currency"
             id="currency"
             value={ currency }
             onChange={ (e) => setCurrency(e.target.value) }
-
           >
             {allCurrencies
               .map((e) => <option key={ e } value={ e }>{e}</option>)}

@@ -7,16 +7,7 @@ function Table(props) {
   const { expenses, dispatch } = props;
 
   const handleRemoveExpense = (element) => {
-    console.log(element);
     const filteredExpenses = expenses.filter((expense) => expense.id !== element.id);
-    console.log(filteredExpenses);
-    // let count = 0;
-    // const resolveIdExpenses = filteredExpenses.map((expence) => {
-    //   expence.id = count;
-    //   count += 1;
-    //   return expence;
-    // });
-    // console.log(resolveIdExpenses);
     dispatch(removeExpenses(filteredExpenses));
   };
 
