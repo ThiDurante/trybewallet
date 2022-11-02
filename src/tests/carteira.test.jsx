@@ -95,6 +95,8 @@ describe('Tests Login Page', () => {
     const forty = 40;
     userEvent.type(inputAmount, forty);
     userEvent.type(inputDescription, 'forty');
+    const inputCurrency = screen.getByLabelText('Currency');
+    userEvent.selectOptions(inputCurrency, 'BTC');
     userEvent.click(addButton);
   });
 });

@@ -68,7 +68,6 @@ function WalletForm(props) {
 
   const handleEditExpense = () => {
     const index = stateExpense.indexOf(editElement);
-    console.log(index);
     const objExpense = {
       id: editElement.id,
       value: amount,
@@ -78,7 +77,6 @@ function WalletForm(props) {
       tag,
       exchangeRates: stateExpense[index].exchangeRates,
     };
-    console.log(objExpense);
     stateExpense[index] = objExpense;
     // dispatching it to globalState and reseting inputs
     dispatch(editExpenses(stateExpense));
