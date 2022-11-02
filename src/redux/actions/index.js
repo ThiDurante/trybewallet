@@ -14,7 +14,17 @@ export const saveExpenses = (expense) => ({
   payload: expense,
 });
 
+export const editExpenses = (expenses) => ({
+  type: 'editExpense',
+  payload: expenses,
+});
+
 export const removeExpenses = (expenses) => ({
   type: 'removeExpenses',
   payload: expenses,
+});
+
+export const editButton = (obj) => ({
+  type: 'editButton',
+  payload: obj,
 });

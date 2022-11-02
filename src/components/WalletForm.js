@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux';
-import { receiveCoins, saveExpenses } from '../redux/actions';
+import { editExpenses, receiveCoins, saveExpenses } from '../redux/actions';
 
 function WalletForm(props) {
-  const { dispatch } = props;
+  const { dispatch, editActive, editElement } = props;
+  const alimentacao = 'Alimentação';
   // fetching and setting currencies for selection
   const [allCurrencies, setAllCurrencies] = useState(() => []);
   useEffect(() => {
@@ -20,15 +21,30 @@ function WalletForm(props) {
   }, [dispatch]);
 
   // controlling inputs
-  const [amount, setAmount] = useState(() => '');
-  const [description, setDescription] = useState(() => '');
-  const [currency, setCurrency] = useState(() => 'USD');
-  const [method, setMethod] = useState(() => 'Dinheiro');
-  const [tag, setTag] = useState(() => 'Alimentação');
+  const [amount, setAmount] = useState('');
+  const [description,
+    setDescription] = useState('');
+  const [currency, setCurrency] = useState('USD');
+  const [method, setMethod] = useState('Dinheiro');
+  const [tag, setTag] = useState(alimentacao);
 
+  useEffect(() => {
+    if (editActive) {
+      setAmount(editElement.value);
+      setDescription(editElement.description);
+      setCurrency(editElement.currency);
+      setMethod(editElement.method);
+      setTag(editElement.tag);
+    }
+  }, [editActive,
+    editElement.currency,
+    editElement.description,
+    editElement.method,
+    editElement.tag,
+    editElement.value]);
   // sending them to global state on button click
+  const { stateExpense } = props;
   const handleSaveExpense = async () => {
-    const { stateExpense } = props;
     const request = await fetch('https://economia.awesomeapi.com.br/json/all');
     const data = await request.json();
     // mounting obj after fetch
@@ -43,13 +59,36 @@ function WalletForm(props) {
     };
     // dispatching it to globalState and reseting inputs
     dispatch(saveExpenses(objExpense));
-    console.log(objExpense);
     setAmount('');
     setDescription('');
     setCurrency('USD');
     setMethod('Dinheiro');
-    setTag('Alimentação');
+    setTag(alimentacao);
   };
+
+  const handleEditExpense = () => {
+    const index = stateExpense.indexOf(editElement);
+    console.log(index);
+    const objExpense = {
+      id: editElement.id,
+      value: amount,
+      description,
+      currency,
+      method,
+      tag,
+      exchangeRates: stateExpense[index].exchangeRates,
+    };
+    console.log(objExpense);
+    stateExpense[index] = objExpense;
+    // dispatching it to globalState and reseting inputs
+    dispatch(editExpenses(stateExpense));
+    setAmount('');
+    setDescription('');
+    setCurrency('USD');
+    setMethod('Dinheiro');
+    setTag(alimentacao);
+  };
+
   return (
     <section>
       <form>
@@ -116,28 +155,48 @@ function WalletForm(props) {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
-        <button
-          type="button"
-          onClick={ handleSaveExpense }
-        >
-          Adicionar despesa
-
-        </button>
+        {editActive
+          ? (
+            <button
+              type="button"
+              onClick={ handleEditExpense }
+            >
+              Editar despesa
+            </button>)
+          : (
+            <button
+              type="button"
+              onClick={ handleSaveExpense }
+            >
+              Adicionar despesa
+            </button>
+          )}
       </form>
     </section>
-
   );
 }
 
 WalletForm.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  editActive: PropTypes.bool.isRequired,
+  editElement: PropTypes.shape({
+    currency: PropTypes.string,
+    description: PropTypes.string,
+    id: PropTypes.string,
+    method: PropTypes.string,
+    tag: PropTypes.string,
+    value: PropTypes.number,
+  }).isRequired,
   stateExpense: PropTypes.shape({
+    indexOf: PropTypes.func,
     length: PropTypes.number,
   }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   stateExpense: state.wallet.expenses,
+  editActive: state.editButton.active,
+  editElement: state.editButton.el,
 });
 
 export default connect(mapStateToProps)(WalletForm);

@@ -49,16 +49,52 @@ describe('Tests Login Page', () => {
     const currency = screen.getByTestId('currency-input');
     expect(currency).toBeInTheDocument();
 
-    // const fifty = 50;
-    // const inputAmount = screen.getByLabelText(/amount/i);
-    // const inputDescription = screen.getByLabelText(/description/i);
-    // userEvent.type(inputAmount, fifty);
-    // userEvent.type(inputDescription, 'fifty');
+    const fifty = 50;
+    const inputAmount = screen.getByLabelText(/amount/i);
+    const inputDescription = screen.getByLabelText(/description/i);
+    userEvent.type(inputAmount, fifty);
+    userEvent.type(inputDescription, 'fifty');
 
-    // const addButton = screen.getByRole('button', { name: /Adicionar despesa/i });
-    // userEvent.click(addButton);
+    const addButton = screen.getByText(/Adicionar despesa/i);
+    userEvent.click(addButton);
 
-    // const removeButton = screen.getByRole('button', { name: /Excluir/i });
-    // userEvent.click(removeButton);
+    const removeButton = screen.getByText(/excluir/i);
+    userEvent.click(removeButton);
+  });
+  test('Checks component WalletForm/editing', async () => {
+    const { history } = renderWithRouterAndRedux(<App />);
+    const btn = screen.getByRole('button');
+
+    const inputEmail = screen.getByLabelText(/email/i);
+    const inputPassword = screen.getByLabelText(/password/i);
+    userEvent.type(inputEmail, 'teste2@hotmail.com');
+    userEvent.type(inputPassword, '123456');
+
+    userEvent.click(btn);
+    expect(history.location.pathname).toBe('/carteira');
+
+    const currency = screen.getByTestId('currency-input');
+    expect(currency).toBeInTheDocument();
+
+    const fifty = 50;
+    const inputAmount = screen.getByLabelText(/amount/i);
+    const inputDescription = screen.getByLabelText(/description/i);
+    userEvent.type(inputAmount, fifty);
+    userEvent.type(inputDescription, 'fifty');
+
+    const addButton = screen.getByText(/Adicionar despesa/i);
+    expect(addButton).toBeInTheDocument();
+    userEvent.click(addButton);
+
+    const editButton = await screen.findByText(/editar despesa/i);
+    userEvent.click(editButton);
+    expect(addButton).toHaveTextContent(/editar despesa/i);
+
+    userEvent.clear(inputAmount);
+    userEvent.clear(inputDescription);
+    const forty = 40;
+    userEvent.type(inputAmount, forty);
+    userEvent.type(inputDescription, 'forty');
+    userEvent.click(addButton);
   });
 });

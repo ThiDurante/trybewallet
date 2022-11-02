@@ -21,6 +21,13 @@ const wallet = (state = initialState, action) => {
         action.payload,
       ],
     };
+  case 'editExpense':
+    return {
+      ...state,
+      expenses: [
+        ...action.payload,
+      ],
+    };
   case 'removeExpenses':
     return {
       ...state,

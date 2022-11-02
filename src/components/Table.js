@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeExpenses } from '../redux/actions';
+import { editButton, removeExpenses } from '../redux/actions';
 
 function Table(props) {
   const { expenses, dispatch } = props;
@@ -9,6 +9,14 @@ function Table(props) {
   const handleRemoveExpense = (element) => {
     const filteredExpenses = expenses.filter((expense) => expense.id !== element.id);
     dispatch(removeExpenses(filteredExpenses));
+  };
+
+  const handleEditExpense = (element) => {
+    const obj = {
+      el: element,
+      active: true,
+    };
+    dispatch(editButton(obj));
   };
 
   return (
@@ -33,6 +41,13 @@ function Table(props) {
           <td>{(+e.value * +e.exchangeRates[e.currency].ask).toFixed(2)}</td>
           <td>Real</td>
           <td>
+            <button
+              type="button"
+              data-testid="edit-btn"
+              onClick={ () => handleEditExpense(e) }
+            >
+              Editar despesa
+            </button>
             <button
               type="button"
               data-testid="delete-btn"
