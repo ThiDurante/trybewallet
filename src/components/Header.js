@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import './Header.css';
+import { BiCoinStack } from 'react-icons/bi';
+import { FaUserCircle } from 'react-icons/fa';
+import logo from '../images/logo.svg';
 
 function Header(props) {
   const { email, expenses } = props;
@@ -10,10 +14,22 @@ function Header(props) {
     return acc;
   }, 0);
   return (
-    <section>
-      <p data-testid="header-currency-field">BRL</p>
-      <p data-testid="total-field">{totalExpenses.toFixed(2)}</p>
-      <p data-testid="email-field">{email}</p>
+    <section className="header">
+      <img src={ logo } alt="logo.png" />
+      <div className="total">
+        <BiCoinStack className="coin-icon" />
+        <p className="total-sum-text" data-testid="total-field">
+          Total de Despesas:
+        </p>
+        <p className="total-sum-number" data-testid="header-currency-field">
+          {totalExpenses.toFixed(2)}
+          BRL
+        </p>
+      </div>
+      <div className="user-email">
+        <FaUserCircle />
+        <p data-testid="email-field">{email}</p>
+      </div>
     </section>
   );
 }

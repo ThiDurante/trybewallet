@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-
+import './login.css';
 import { connect } from 'react-redux';
 import { loginEvent } from '../redux/actions';
+import logo from '../images/logo.svg';
 
 function Login(props) {
   const { dispatch } = props;
@@ -32,39 +33,45 @@ function Login(props) {
 
   return (
 
-    <div>
-      <form action="">
-        <label htmlFor="email">
-          Email
-          <input
-            data-testid="email-input"
-            type="text"
-            name="email"
-            value={ email }
-            id="email"
-            onChange={ (e) => setEmail(e.target.value) }
-          />
-        </label>
-        <label htmlFor="password">
-          Password
-          <input
-            data-testid="password-input"
-            type="password"
-            name="password"
-            value={ password }
-            id="password"
-            onChange={ (e) => setPassword(e.target.value) }
+    <div className="pai-login">
+      <form className="form-login">
+        <img src={ logo } alt="logo" />
+        <div className="inputs">
+          <label htmlFor="email">
+            <input
+              className="input"
+              placeholder="E-mail"
+              data-testid="email-input"
+              type="text"
+              name="email"
+              value={ email }
+              id="email"
+              onChange={ (e) => setEmail(e.target.value) }
+            />
+          </label>
+          <label htmlFor="password">
+            <input
+              className="input"
+              placeholder="Password"
+              data-testid="password-input"
+              type="password"
+              name="password"
+              value={ password }
+              id="password"
+              onChange={ (e) => setPassword(e.target.value) }
 
-          />
-        </label>
-        <button
-          disabled={ enterBtn }
-          type="button"
-          onClick={ handleLoginClick }
-        >
-          Entrar
+            />
+          </label>
+          <button
+            className="btn"
+            disabled={ enterBtn }
+            type="button"
+            onClick={ handleLoginClick }
+          >
+            Entrar
 
-        </button>
+          </button>
+        </div>
       </form>
     </div>
   );

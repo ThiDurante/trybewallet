@@ -28,3 +28,8 @@ export const editButton = (obj) => ({
   type: 'editButton',
   payload: obj,
 });
+
+export const saveEditButton = (obj) => ({
+  type: 'saveEditButton',
+  payload: obj,
+});

@@ -1,0 +1,8 @@
+.paidospais{
+  background-image: url('../images/bg.png');
+  mix-blend-mode: luminosity;
+  height: 100vh;
+  background-size: cover;
+  background-color: #19a874;
+  mix-blend-mode: luminosity;
+}

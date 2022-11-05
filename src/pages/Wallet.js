@@ -2,10 +2,11 @@ import React from 'react';
 import Header from '../components/Header';
 import Table from '../components/Table';
 import WalletForm from '../components/WalletForm';
+import './Wallet.css';
 
 function Wallet() {
   return (
-    <section>
+    <section className="paidospais">
       <Header />
       <WalletForm />
       <Table />

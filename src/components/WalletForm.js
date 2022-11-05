@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-
+import './WalletForm.css';
 import { connect } from 'react-redux';
-import { editExpenses, receiveCoins, saveExpenses } from '../redux/actions';
+import { editExpenses,
+  receiveCoins, saveEditButton, saveExpenses } from '../redux/actions';
 
 function WalletForm(props) {
   const { dispatch, editActive, editElement } = props;
@@ -77,9 +78,11 @@ function WalletForm(props) {
       tag,
       exchangeRates: stateExpense[index].exchangeRates,
     };
+    const saveEdit = { active: false };
     stateExpense[index] = objExpense;
     // dispatching it to globalState and reseting inputs
     dispatch(editExpenses(stateExpense));
+    dispatch(saveEditButton(saveEdit));
     setAmount('');
     setDescription('');
     setCurrency('USD');
@@ -88,20 +91,9 @@ function WalletForm(props) {
   };
 
   return (
-    <section>
-      <form>
-        <label htmlFor="amount">
-          Amount
-          <input
-            data-testid="value-input"
-            type="number"
-            name="amount"
-            id="amount"
-            value={ amount }
-            onChange={ (e) => setAmount(e.target.value) }
-          />
-        </label>
-        <label htmlFor="description">
+    <section className="form-container">
+      <form className="form">
+        <label className="description" htmlFor="description">
           Description
           <input
             data-testid="description-input"
@@ -112,33 +104,8 @@ function WalletForm(props) {
             onChange={ (e) => setDescription(e.target.value) }
           />
         </label>
-        <label htmlFor="currency">
-          Currency
-          <select
-            data-testid="currency-input"
-            name="currency"
-            id="currency"
-            value={ currency }
-            onChange={ (e) => setCurrency(e.target.value) }
-          >
-            {allCurrencies
-              .map((e) => <option key={ e } value={ e }>{e}</option>)}
-          </select>
-        </label>
-        <label htmlFor="method">
-          <select
-            data-testid="method-input"
-            name="method"
-            id="method"
-            value={ method }
-            onChange={ (e) => setMethod(e.target.value) }
-          >
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
-        </label>
-        <label htmlFor="tag">
+        <label className="category" htmlFor="tag">
+          Category
           <select
             data-testid="tag-input"
             name="tag"
@@ -153,23 +120,64 @@ function WalletForm(props) {
             <option value="Saúde">Saúde</option>
           </select>
         </label>
-        {editActive
-          ? (
-            <button
-              type="button"
-              onClick={ handleEditExpense }
-            >
-              Editar despesa
-            </button>)
-          : (
-            <button
-              type="button"
-              onClick={ handleSaveExpense }
-            >
-              Adicionar despesa
-            </button>
-          )}
+        <label className="amount" htmlFor="amount">
+          Amount
+          <input
+            data-testid="value-input"
+            type="number"
+            name="amount"
+            id="amount"
+            value={ amount }
+            onChange={ (e) => setAmount(e.target.value) }
+          />
+        </label>
+        <label className="method" htmlFor="method">
+          Payment Method
+          <select
+            data-testid="method-input"
+            name="method"
+            id="method"
+            value={ method }
+            onChange={ (e) => setMethod(e.target.value) }
+          >
+            <option value="Dinheiro">Dinheiro</option>
+            <option value="Cartão de crédito">Cartão de crédito</option>
+            <option value="Cartão de débito">Cartão de débito</option>
+          </select>
+        </label>
+
+        <label className="currency" htmlFor="currency">
+          Currency
+          <select
+            data-testid="currency-input"
+            name="currency"
+            id="currency"
+            value={ currency }
+            onChange={ (e) => setCurrency(e.target.value) }
+          >
+            {allCurrencies
+              .map((e) => <option key={ e } value={ e }>{e}</option>)}
+          </select>
+        </label>
       </form>
+      {editActive
+        ? (
+          <button
+            type="button"
+            className="btn"
+            onClick={ handleEditExpense }
+          >
+            Editar despesa
+          </button>)
+        : (
+          <button
+            type="button"
+            className="btn"
+            onClick={ handleSaveExpense }
+          >
+            Adicionar despesa
+          </button>
+        )}
     </section>
   );
 }

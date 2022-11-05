@@ -5,10 +5,15 @@ const initialState = {
 
 const editButton = (state = initialState, action) => {
   switch (action.type) {
-  case 'editButton':
+  case 'editButton' || 'saveEditButton':
     return {
       ...state,
       ...action.payload,
+    };
+  case 'saveEditButton':
+    return {
+      ...state,
+      active: action.payload.active,
     };
   default:
     return state;
