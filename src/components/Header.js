@@ -22,6 +22,8 @@ function Header(props) {
           Total de Despesas:
         </p>
         <p className="total-sum-number" data-testid="header-currency-field">
+          R$
+          {' '}
           {totalExpenses.toFixed(2)}
           BRL
         </p>
