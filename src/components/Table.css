@@ -1,5 +1,5 @@
 .table-container {
-  background-color: #003BE5;
+  background-color: #003be5;
   padding-top: 300px;
   width: 1050px;
   margin: -200px auto;
@@ -13,7 +13,7 @@
 }
 
 .table-header {
-  color: white;
+  color: rgba(255, 255, 255, 0.966);
   margin: auto;
   width: 80%;
   font-weight: 700;
@@ -22,16 +22,16 @@
   display: flex;
   padding: 10px;
   /* gap: 20px; */
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgb(255, 255, 255);
 }
 
-th{
+th {
   height: 10px;
   padding: 13px;
   width: 110px;
   display: flex;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
 }
 
 thead > th + th {
@@ -62,9 +62,9 @@ td {
   padding: 13px;
   width: 90px;
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: center;
-  color: #2FC18C;
+  color: #2fc18c;
   font-weight: 500;
 }
 
@@ -81,12 +81,12 @@ tr + tr {
   background: none;
   border: none;
   font-size: 20px;
-  color: #2FC18C;
+  color: #2fc18c;
 }
 
 .btn-trash {
   background: none;
   border: none;
   font-size: 20px;
-  color: #DF3C6D
+  color: #df3c6d;
 }

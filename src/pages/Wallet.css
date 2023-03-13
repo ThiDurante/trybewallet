@@ -1,5 +1,5 @@
-.paidospais{
-  background-image: url('../images/bg.png');
+.paidospais {
+  background-image: url('../images/background.png');
   mix-blend-mode: luminosity;
   height: 100vh;
   background-size: cover;

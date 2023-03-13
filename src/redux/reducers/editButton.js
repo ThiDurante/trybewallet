@@ -3,6 +3,8 @@ const initialState = {
   active: false,
 };
 
+// create obj with cases/actions
+
 const editButton = (state = initialState, action) => {
   switch (action.type) {
   case 'editButton' || 'saveEditButton':

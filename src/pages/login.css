@@ -1,5 +1,5 @@
-.pai-login{
-  background-image: url('../images/bg.png');
+.pai-login {
+  background-image: url('../images/background.png');
   mix-blend-mode: luminosity;
   height: 100vh;
   background-size: cover;
@@ -20,7 +20,7 @@
   width: 525px;
   height: 356px;
   padding: 15px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: -4px 9px 13px rgba(3, 107, 82, 0.3);
   border-radius: 10px;
 }
@@ -29,15 +29,15 @@
   display: flex;
   flex-direction: column;
   padding: 15px;
-  gap: 10px
+  gap: 10px;
 }
 
 .btn {
-  background-color: #003BE5;
+  background-color: #003be5;
 }
 
 .input {
-  border: 1px solid #003BE5;
+  border: 1px solid #003be5;
   width: 330px;
   height: 40px;
   text-align: center;
@@ -45,11 +45,11 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 14px;
-  color: #003BE5;
+  color: #003be5;
 }
 
 .input::placeholder {
-  color: #003BE5;
+  color: #003be5;
   opacity: 0.5;
   font-weight: 700;
 }

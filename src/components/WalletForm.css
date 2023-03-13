@@ -1,33 +1,31 @@
 .form-container {
-max-width: 950px;
-margin: auto;
-display: flex;
-flex-direction: column;
-background-color: #FFFFFF;
-border-radius: 0px 0px 5px 5px;
-box-shadow: -4px 9px 13px rgba(5, 18, 54, 0.4);
-z-index: 1;
-position: relative; 
+  max-width: 950px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #fffffffd;
+  border-radius: 0px 0px 5px 5px;
+  box-shadow: -4px 9px 13px rgba(5, 18, 54, 0.4);
+  z-index: 1;
+  position: relative;
 }
 
 .form {
-  background-color: #E1E5EB7D;
+  background-color: #e1e5eb7d;
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
   gap: 30px;
-  color: #003BE5;
+  color: #003be5;
   font-weight: 700;
-border-radius: 10px
-
+  border-radius: 10px;
 }
-.form > label{
+.form > label {
   display: flex;
   gap: 10px;
   margin-left: 10px;
-  align-items: center
+  align-items: center;
 }
-
 
 .form > label > input {
   border-radius: 5px;
@@ -35,50 +33,47 @@ border-radius: 10px
 }
 
 .description {
-  width: 60%
+  width: 60%;
 }
 
 .description > input {
   width: 60%;
-  border: 1px solid #003BE5;
-  color: #003BE5;
+  border: 1px solid #003be5;
+  color: #003be5;
 }
 
 .amount input {
-  border: 1px solid #003BE5;
-  color: #003BE5;
-
+  border: 1px solid #003be5;
+  color: #003be5;
 }
 
 .category select {
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #003BE5;
-  color: #003BE5
-
+  border: 1px solid #003be5;
+  color: #003be5;
 }
 
 .method select {
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #003BE5;
-  color: #003BE5
-
+  border: 1px solid #003be5;
+  color: #003be5;
 }
 
 .currency select {
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid #003BE5;
-  color: #003BE5
+  border: 1px solid #003be5;
+  color: #003be5;
 }
 
 .btn {
   margin: 20px auto;
   width: 330px;
   height: 40px;
-  background-color: #2FC18C;
-  border: 1px solid #2FC18C;
+  background-color: #2fc18c;
+  border: 1px solid #2fc18c;
   border-radius: 5px;
   color: white;
   font-weight: 700;

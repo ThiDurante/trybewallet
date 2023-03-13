@@ -24,12 +24,12 @@ export const removeExpenses = (expenses) => ({
   payload: expenses,
 });
 
-export const editButton = (obj) => ({
+export const editButton = (objToEdit) => ({
   type: 'editButton',
-  payload: obj,
+  payload: objToEdit,
 });
 
-export const saveEditButton = (obj) => ({
+export const saveEditButton = (objToEdit) => ({
   type: 'saveEditButton',
-  payload: obj,
+  payload: objToEdit,
 });

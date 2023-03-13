@@ -199,6 +199,7 @@ WalletForm.propTypes = {
   }).isRequired,
 };
 
+// get state
 const mapStateToProps = (state) => ({
   stateExpense: state.wallet.expenses,
   editActive: state.editButton.active,

@@ -27,7 +27,6 @@ function Login(props) {
   const handleLoginClick = () => {
     const { history } = props;
     dispatch(loginEvent(email));
-    // dispatch(fetchCoins());
     history.push('/carteira');
   };
 

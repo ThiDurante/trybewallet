@@ -5,36 +5,35 @@
   max-width: 950px;
   margin: auto;
   align-items: center;
-  background-color: #FFFFFF;
+  background-color: #fffffffd;
   border-radius: 5px 5px 0px 0px;
 }
 
-.total{
+.total {
   display: flex;
   align-items: center;
-  color: #003BE5;
+  color: #003be5;
 }
 .coin-icon {
   font-weight: 700;
   font-size: 25px;
-
 }
 
-  .total-sum-text{
-  color: #003BE5;
+.total-sum-text {
+  color: #003be5;
   font-weight: 700;
 }
 
-.total-sum-number{
+.total-sum-number {
   display: flex;
   align-items: center;
-  color: #003BE5;
+  color: #003be5;
   margin-left: 5px;
 }
 
 .user-email {
   display: flex;
-  color: #2FC18C;
+  color: #2fc18c;
   gap: 10px;
   font-weight: 600;
 }

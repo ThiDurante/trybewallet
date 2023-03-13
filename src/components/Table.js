@@ -8,7 +8,6 @@ import './Table.css';
 
 function Table(props) {
   const { expenses, dispatch } = props;
-
   const handleRemoveExpense = (element) => {
     const filteredExpenses = expenses.filter((expense) => expense.id !== element.id);
     dispatch(removeExpenses(filteredExpenses));
@@ -79,6 +78,7 @@ Table.propTypes = {
   }).isRequired,
 };
 
+// get state
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
