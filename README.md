@@ -26,7 +26,7 @@ If you just want to check it out and see it working here is a link for you: **[T
 
 ## Screenshots
 
-I user a pattern for commits that makes them easily readable and faster to understand changes that were made!
+Here you can see the App visuals!
 
 ![App Screenshot](https://i.imgur.com/hv7vI7b.png)
 
