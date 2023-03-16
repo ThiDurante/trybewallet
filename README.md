@@ -45,7 +45,7 @@ Here you can see the App visuals!
 - Basic logic of components manipulation
 - Test coverage with RTL
 
-## Stack
+## Stacks
 
 **Front-end:** React, Redux, CSS, Hooks and RTL for testing
 
